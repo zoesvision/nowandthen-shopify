@@ -91,20 +91,38 @@ Figma node: `1011:2218` (1920 × 4270)
    - `templates/index.json`
    - `templates/collection.json`
    - `templates/product.json`
-2. Cursor should take one of the remaining pages and create new, page-specific files instead of rewriting the three pages above.
+2. Cursor owns pages 6–10 only and must create new, page-specific files instead of rewriting pages 1–5.
 3. Prefix new custom assets and CSS with `nt-` or `nowandthen-`.
 4. Download Figma image assets into the repository; do not leave expiring Figma URLs in Liquid or CSS.
 5. Do not start a second `shopify theme dev` process while the existing watcher is running.
 6. Run `shopify theme check` and `git diff --check` after changes.
-7. The repository currently has no initial commit. Create a safe baseline commit before simultaneous editing or use separate branches/worktrees.
+7. The baseline commit is `8463e38`. Branch from the latest `main`; do not work directly on `main`.
 
-## Recommended Cursor assignment
+## Fixed page ownership
 
-Implement the Contact page (`1049:1492`) in new files only:
+Codex owns pages 1–5 on branch `codex/pages-1-5`:
 
-- `sections/nowandthen-contact.liquid`
-- `assets/nowandthen-contact.css`
-- `templates/page.contact.json`
-- any new exact Figma exports under `assets/nt-contact-*`
+1. Home — `1011:1607` desktop, `1018:3698` mobile
+2. Category — `1011:1752`
+3. Product detail — `1011:2218`
+4. Interviews — `1011:1945`
+5. Interview detail — `1011:1886`
 
-Do not modify homepage, collection, product-detail, or their templates. Match the 1920px Figma frame first, add responsive behavior without changing desktop geometry, and return a list of modified files plus validation results.
+Cursor owns pages 6–10 on branch `cursor/pages-6-10`:
+
+6. Lookbook — `1011:2114`
+7. Lookbook detail — `1011:2085`
+8. Philosophy — `1011:2148`
+9. Contact — `1049:1492`
+10. FAQ — `1049:5800`
+
+Cursor instructions:
+
+1. Fetch and pull the latest `main`, then create `cursor/pages-6-10` from it.
+2. Read this handoff completely before editing.
+3. Implement pages 6 and 7 first, followed by pages 8–10.
+4. Use new page-specific sections, styles, templates, and `nt-*` assets.
+5. Do not edit page 1–5 files or refactor the shared header/footer during parallel development.
+6. Match each 1920px frame first, then add responsive behavior without changing desktop geometry.
+7. Commit in page-sized units and push only `cursor/pages-6-10`.
+8. Return the commit hashes, changed-file list, theme-check result, and any remaining visual or Shopify-data limitations.
