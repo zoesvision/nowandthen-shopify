@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "nowandthen_home": {
+      "type": "nowandthen-home",
+      "settings": {}
+    }
+  },
+  "order": ["nowandthen_home"]
+}

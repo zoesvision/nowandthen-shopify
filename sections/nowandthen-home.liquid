@@ -1,0 +1,69 @@
+{{ 'nowandthen-home.css' | asset_url | stylesheet_tag }}
+
+<main class="nt-home">
+  <div class="nt-announcement" data-nt-announcement><span class="nt-announcement__text">Private Appointments | <u>Join us for a personalized appointment</u></span><button class="nt-announcement__close" type="button" aria-label="Close announcement" data-nt-announcement-close><img src="{{ 'nt-close.svg' | asset_url }}" alt="" width="16" height="16"></button></div>
+  <header class="nt-header">
+    <nav class="nt-nav"><a href="{{ routes.all_products_collection_url }}">Jewelry</a><a href="#">Objects</a><a href="#">Edits</a><a href="#">Library</a><a href="#">About</a></nav>
+    <button class="nt-mobile-menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nt-mobile-navigation" data-nt-mobile-menu><img src="{{ 'nt-mobile-menu.svg' | asset_url }}" alt="" width="17" height="13"></button>
+    <a class="nt-brand" href="{{ routes.root_url }}"><span>NOWANDTHEN</span><img src="{{ 'nt-mobile-logo.svg' | asset_url }}" alt="Nowandthen" width="130" height="14"></a>
+    <nav class="nt-nav nt-nav--right"><a href="{{ routes.search_url }}">Search</a><a href="{{ routes.account_url }}">Login</a><a href="{{ routes.cart_url }}">Cart</a></nav>
+    <nav class="nt-mobile-actions" aria-label="Store actions"><a href="{{ routes.search_url }}" aria-label="Search"><img src="{{ 'nt-mobile-search.svg' | asset_url }}" alt="" width="23" height="23"></a><a href="{{ routes.cart_url }}" aria-label="Cart"><img src="{{ 'nt-mobile-cart.svg' | asset_url }}" alt="" width="16" height="15"></a></nav>
+    <nav class="nt-mobile-navigation" id="nt-mobile-navigation" aria-label="Mobile navigation" data-nt-mobile-navigation hidden><a href="{{ routes.all_products_collection_url }}">Jewelry</a><a href="{{ routes.collections_url }}/objects">Objects</a><a href="{{ routes.root_url }}pages/edits">Edits</a><a href="{{ routes.root_url }}pages/library">Library</a><a href="{{ routes.root_url }}pages/about">About</a></nav>
+  </header>
+
+  <section class="nt-hero">
+    <div class="nt-hero__media"><img class="nt-hero__image" src="{{ 'nt-hero.png' | asset_url }}" alt="Of Light and Lustre" width="680" height="850"></div>
+    <div class="nt-caption"><span>Fig 1. Of Light and Lustre</span><a class="nt-link" href="#">Explore</a></div>
+  </section>
+
+  <section class="nt-gifts">
+    <h1 class="nt-title">As a gift</h1>
+    <div class="nt-gift-grid">
+      <article class="nt-product nt-product--one"><img class="nt-product__image" src="{{ 'nt-product-main.png' | asset_url }}" alt="Carnelian Moon Ring" width="400" height="400"><div class="nt-product__meta">Carnelian Moon Ring<br>$420</div></article>
+      <article class="nt-product nt-product--two"><img class="nt-product__image" src="{{ 'nt-product-3.png' | asset_url }}" alt="Jewelry" width="400" height="400"></article>
+      <article class="nt-product nt-product--three"><img class="nt-product__image" src="{{ 'nt-product-4.png' | asset_url }}" alt="Jewelry" width="400" height="400"></article>
+      <article class="nt-product nt-product--four"><img class="nt-product__image" src="{{ 'nt-product-5.png' | asset_url }}" alt="Jewelry" width="400" height="400"></article>
+    </div>
+    <a class="nt-link" href="{{ routes.all_products_collection_url }}">Explore</a>
+  </section>
+
+  <section class="nt-editorial">
+    <article class="nt-feature"><img class="nt-feature__image" src="{{ 'nt-editorial.png' | asset_url }}" alt="Dennis Paphitis" width="750" height="938"><div class="nt-caption"><span>Dennis Paphitis: "Life without some excess, forget it."</span><a class="nt-link" href="#">Explore</a></div></article>
+    <article class="nt-story"><img class="nt-story__ornament" src="{{ 'nt-circle.svg' | asset_url }}" alt="" width="618" height="618"><h2 class="nt-title">An interview with the ceramicist</h2><p class="nt-story__copy">“I’m not interested in spaces that impress immediately. I’m interested in the ones that become quieter, deeper, and more necessary with time.”</p><p class="nt-story__credit">— Elena Voss</p><a class="nt-link" href="#">Explore</a></article>
+  </section>
+
+  <section class="nt-lookbook"><div class="nt-lookbook__images"><div class="nt-lookbook__left"><img src="{{ 'nt-product-main.png' | asset_url }}" alt="Ring" width="436" height="545"></div><div class="nt-lookbook__right"><img src="{{ 'nt-lookbook.png' | asset_url }}" alt="Of Light and Lustre" width="640" height="800"></div></div><div class="nt-caption"><span>Fig 1. Of Light and Lustre</span><a class="nt-link" href="#"><span class="nt-label-desktop">Explore</span><span class="nt-label-mobile">Discover</span></a></div></section>
+
+  <section class="nt-materials">
+    <article class="nt-story nt-story--sand"><img class="nt-story__ornament nt-story__ornament--golden" src="{{ 'nt-golden-ratio.svg' | asset_url }}" alt="" width="918" height="568"><h2 class="nt-title">Materials</h2><p class="nt-story__copy">925 silver, pearls, and stones gathered by hand. We work only with materials that age with grace — sterling silver, freshwater pearls, lapis, garnet, quartz, moonstone.</p><a class="nt-link" href="#">Explore</a></article>
+    <article class="nt-feature"><img class="nt-feature__image" src="{{ 'nt-materials.png' | asset_url }}" alt="18k Gold" width="750" height="938"><div class="nt-caption"><span>18k Gold</span><a class="nt-link" href="#">Explore</a></div></article>
+  </section>
+
+  <section class="nt-quote"><blockquote>“It is the time you have wasted for your rose that makes your rose so important.”</blockquote><cite>— Antoine de Saint-Exupéry</cite></section>
+
+  <footer class="nt-footer"><div class="nt-footer__top"><form class="nt-newsletter" method="post" action="/contact#contact_form"><span>Now and then, in your inbox.</span><div class="nt-newsletter__input"><input type="email" name="contact[email]" placeholder="Email address" aria-label="Email address"><button type="submit" aria-label="Subscribe">→</button></div></form><div class="nt-footer__links"><div>ABOUT<ul><li>Philosophy</li><li>Contact</li></ul></div><div>ORDERS<ul><li>FAQ</li><li>Payment,<br>Shipping &amp;<br>Returns</li><li>Search</li></ul></div><div>LEGAL<ul><li>Terms</li><li>Privacy Policy</li><li>Accessibility</li><li>Do Not Sell or Share My Personal Information</li></ul></div><div>SOCIAL<ul><li>Instagram</li><li>Facebook</li><li>Pinterest</li></ul></div></div></div><div class="nt-footer__copyright">Copyright Nowandthen 2026</div></footer>
+</main>
+
+<script>
+  document.querySelector('[data-nt-announcement-close]')?.addEventListener('click', (event) => {
+    event.currentTarget.closest('[data-nt-announcement]')?.remove();
+  });
+
+  document.querySelector('[data-nt-mobile-menu]')?.addEventListener('click', (event) => {
+    const button = event.currentTarget;
+    const navigation = document.querySelector('[data-nt-mobile-navigation]');
+    const isOpen = button.getAttribute('aria-expanded') === 'true';
+
+    button.setAttribute('aria-expanded', String(!isOpen));
+    button.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+    navigation.hidden = isOpen;
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Nowandthen homepage",
+  "settings": [],
+  "presets": [{ "name": "Nowandthen homepage" }]
+}
+{% endschema %}

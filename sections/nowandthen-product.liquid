@@ -1,0 +1,94 @@
+{{ 'nowandthen-home.css' | asset_url | stylesheet_tag }}
+{{ 'nowandthen-product.css' | asset_url | stylesheet_tag }}
+
+<main class="nt-product-page">
+  <div class="nt-announcement" data-nt-announcement><span class="nt-announcement__text">Private Appointments | <u>Join us for a personalized appointment</u></span><button class="nt-announcement__close" type="button" aria-label="Close announcement" data-nt-announcement-close><img src="{{ 'nt-close.svg' | asset_url }}" alt="" width="16" height="16"></button></div>
+  <header class="nt-header">
+    <nav class="nt-nav"><a href="{{ routes.all_products_collection_url }}">Jewelry</a><a href="#">Objects</a><a href="#">Edits</a><a href="#">Library</a><a href="#">About</a></nav>
+    <button class="nt-mobile-menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nt-mobile-navigation" data-nt-mobile-menu><img src="{{ 'nt-mobile-menu.svg' | asset_url }}" alt="" width="17" height="13"></button>
+    <a class="nt-brand" href="{{ routes.root_url }}"><span>NOWANDTHEN</span><img src="{{ 'nt-mobile-logo.svg' | asset_url }}" alt="Nowandthen" width="130" height="14"></a>
+    <nav class="nt-nav nt-nav--right"><a href="{{ routes.search_url }}">Search</a><a href="{{ routes.account_url }}">Login</a><a href="{{ routes.cart_url }}">Cart</a></nav>
+    <nav class="nt-mobile-actions" aria-label="Store actions"><a href="{{ routes.search_url }}" aria-label="Search"><img src="{{ 'nt-mobile-search.svg' | asset_url }}" alt="" width="23" height="23"></a><a href="{{ routes.cart_url }}" aria-label="Cart"><img src="{{ 'nt-mobile-cart.svg' | asset_url }}" alt="" width="16" height="15"></a></nav>
+    <nav class="nt-mobile-navigation" id="nt-mobile-navigation" aria-label="Mobile navigation" data-nt-mobile-navigation hidden><a href="{{ routes.all_products_collection_url }}">Jewelry</a><a href="{{ routes.collections_url }}/objects">Objects</a><a href="{{ routes.root_url }}pages/edits">Edits</a><a href="{{ routes.root_url }}pages/library">Library</a><a href="{{ routes.root_url }}pages/about">About</a></nav>
+  </header>
+
+  <section class="nt-product-detail">
+    <div class="nt-product-detail__breadcrumb"><a href="{{ routes.root_url }}">Home</a><span> / </span><a href="{{ routes.all_products_collection_url }}">Jewelry</a><span> / {{ product.title | default: 'Carnelian Moon Ring' }}</span></div>
+    <div class="nt-product-detail__layout">
+      <div class="nt-product-detail__thumbs" aria-label="Product images">
+        <button type="button" data-nt-product-thumb="0" aria-label="View product image 1"><img src="{{ 'nt-product-detail-portrait.png' | asset_url }}" alt="" width="60" height="75"></button>
+        <button type="button" data-nt-product-thumb="1" aria-label="View product image 2"><img src="{{ 'nt-product-detail-earrings.png' | asset_url }}" alt="" width="60" height="75"></button>
+        <button type="button" data-nt-product-thumb="1" aria-label="View product image 3"><img src="{{ 'nt-product-detail-earrings.png' | asset_url }}" alt="" width="60" height="75"></button>
+      </div>
+
+      <div class="nt-product-detail__gallery">
+        <img id="nt-product-image-1" src="{{ 'nt-product-detail-portrait.png' | asset_url }}" alt="{{ product.title | default: 'Carnelian Moon Ring' | escape }}" width="860" height="1075">
+        <img id="nt-product-image-2" src="{{ 'nt-product-detail-earrings.png' | asset_url }}" alt="Carnelian earrings" width="860" height="1075">
+      </div>
+
+      <aside class="nt-product-detail__aside">
+        <div class="nt-product-info">
+          <div class="nt-product-info__heading"><h1>{{ product.title | default: 'Carnelian Moon Ring' }}</h1><span>{% if product != blank %}{{ product.price | money_without_trailing_zeros }}{% else %}$420{% endif %}</span></div>
+          <p>{{ product.description | strip_html | default: 'A hand-finished 925 sterling silver band set with a single carnelian.' }}</p>
+          <div class="nt-product-info__details"><strong>Details</strong><span>· 925 sterling silver<br>· Natural carnelian stone<br>· Made in small batches</span></div>
+          <div class="nt-product-info__share"><strong>Share</strong><div><a href="#">IG</a><a href="#">FB</a><a href="#">PN</a></div></div>
+        </div>
+
+        {% form 'product', product, class: 'nt-product-form', data-nt-product-form: '' %}
+          <details class="nt-product-form__selector">
+            <summary><span>Select material</span><span aria-hidden="true">+</span></summary>
+            <div class="nt-product-form__options">
+              {% for variant in product.variants %}
+                <label><input type="radio" name="id" value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}><span>{{ variant.title }}</span></label>
+              {% else %}
+                <label><input type="radio" name="material" value="Sterling silver"><span>Sterling silver</span></label>
+              {% endfor %}
+            </div>
+          </details>
+          <button class="nt-product-form__submit" type="submit" name="add" disabled data-nt-product-submit>Make a Selection</button>
+        {% endform %}
+      </aside>
+    </div>
+
+    <section class="nt-related">
+      <h2>Related Items (3)</h2>
+      <div class="nt-related__grid">
+        {% render 'nowandthen-collection-card', product: product, image: 'nt-product-related-lapis.png', title: 'Lapis Signet', action: 'Made to Order' %}
+        {% render 'nowandthen-collection-card', product: product, image: 'nt-product-related-pearl.png', title: 'Pearl Drop Earrings', action: '$280' %}
+        {% render 'nowandthen-collection-card', product: product, image: 'nt-product-related-quartz.png', title: 'Quartz Band', action: '$360' %}
+      </div>
+    </section>
+  </section>
+
+  <footer class="nt-footer"><div class="nt-footer__top"><form class="nt-newsletter" method="post" action="/contact#contact_form"><span>Now and then, in your inbox.</span><div class="nt-newsletter__input"><input type="email" name="contact[email]" placeholder="Email address" aria-label="Email address"><button type="submit" aria-label="Subscribe">→</button></div></form><div class="nt-footer__links"><div>ABOUT<ul><li>Philosophy</li><li>Contact</li><li>Privacy Policy</li><li>Accessibility</li></ul></div><div>ORDERS<ul><li>FAQ</li><li>Payment,<br>Shipping &amp;<br>Returns</li><li>Search</li></ul></div><div>LEGAL<ul><li>Terms</li><li>Privacy Policy</li><li>Accessibility</li><li>Do Not Sell or Share My Personal Information</li></ul></div><div>SOCIAL<ul><li>Instagram</li><li>Facebook</li><li>Pinterest</li></ul></div></div></div><div class="nt-footer__copyright">Copyright Nowandthen 2026</div></footer>
+</main>
+
+<script>
+  document.querySelector('[data-nt-announcement-close]')?.addEventListener('click', (event) => event.currentTarget.closest('[data-nt-announcement]')?.remove());
+  document.querySelector('[data-nt-mobile-menu]')?.addEventListener('click', (event) => {
+    const button = event.currentTarget;
+    const navigation = document.querySelector('[data-nt-mobile-navigation]');
+    const isOpen = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', String(!isOpen));
+    button.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+    navigation.hidden = isOpen;
+  });
+  document.querySelectorAll('[data-nt-product-thumb]').forEach((button) => {
+    button.addEventListener('click', () => document.querySelector(`#nt-product-image-${Number(button.dataset.ntProductThumb) + 1}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+  });
+  document.querySelectorAll('[data-nt-product-form] input[type="radio"]').forEach((option) => {
+    option.addEventListener('change', () => {
+      const submit = document.querySelector('[data-nt-product-submit]');
+      submit.disabled = false;
+      submit.textContent = 'Add to Bag';
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Nowandthen product",
+  "settings": [],
+  "presets": [{ "name": "Nowandthen product" }]
+}
+{% endschema %}

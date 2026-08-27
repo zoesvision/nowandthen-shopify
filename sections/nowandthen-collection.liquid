@@ -1,0 +1,61 @@
+{{ 'nowandthen-home.css' | asset_url | stylesheet_tag }}
+{{ 'nowandthen-collection.css' | asset_url | stylesheet_tag }}
+
+{%- assign product_1 = collection.products[0] -%}
+{%- assign product_2 = collection.products[1] -%}
+{%- assign product_3 = collection.products[2] -%}
+{%- assign product_4 = collection.products[3] -%}
+{%- assign product_5 = collection.products[4] -%}
+{%- assign product_6 = collection.products[5] -%}
+{%- assign product_7 = collection.products[6] -%}
+{%- assign product_8 = collection.products[7] -%}
+
+<main class="nt-collection-page">
+  <div class="nt-announcement" data-nt-announcement><span class="nt-announcement__text">Private Appointments | <u>Join us for a personalized appointment</u></span><button class="nt-announcement__close" type="button" aria-label="Close announcement" data-nt-announcement-close><img src="{{ 'nt-close.svg' | asset_url }}" alt="" width="16" height="16"></button></div>
+  <header class="nt-header">
+    <nav class="nt-nav"><a href="{{ routes.all_products_collection_url }}">Jewelry</a><a href="#">Objects</a><a href="#">Edits</a><a href="#">Library</a><a href="#">About</a></nav>
+    <button class="nt-mobile-menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nt-mobile-navigation" data-nt-mobile-menu><img src="{{ 'nt-mobile-menu.svg' | asset_url }}" alt="" width="17" height="13"></button>
+    <a class="nt-brand" href="{{ routes.root_url }}"><span>NOWANDTHEN</span><img src="{{ 'nt-mobile-logo.svg' | asset_url }}" alt="Nowandthen" width="130" height="14"></a>
+    <nav class="nt-nav nt-nav--right"><a href="{{ routes.search_url }}">Search</a><a href="{{ routes.account_url }}">Login</a><a href="{{ routes.cart_url }}">Cart</a></nav>
+    <nav class="nt-mobile-actions" aria-label="Store actions"><a href="{{ routes.search_url }}" aria-label="Search"><img src="{{ 'nt-mobile-search.svg' | asset_url }}" alt="" width="23" height="23"></a><a href="{{ routes.cart_url }}" aria-label="Cart"><img src="{{ 'nt-mobile-cart.svg' | asset_url }}" alt="" width="16" height="15"></a></nav>
+    <nav class="nt-mobile-navigation" id="nt-mobile-navigation" aria-label="Mobile navigation" data-nt-mobile-navigation hidden><a href="{{ routes.all_products_collection_url }}">Jewelry</a><a href="{{ routes.collections_url }}/objects">Objects</a><a href="{{ routes.root_url }}pages/edits">Edits</a><a href="{{ routes.root_url }}pages/library">Library</a><a href="{{ routes.root_url }}pages/about">About</a></nav>
+  </header>
+
+  <section class="nt-collection">
+    <div class="nt-collection__breadcrumb"><a href="{{ routes.root_url }}">Home</a><span> / All Jewelry ({{ collection.all_products_count | default: 12 }})</span></div>
+    <div class="nt-collection__grid">
+      {% render 'nowandthen-collection-card', product: product_1, image: 'nt-collection-carnelian.png', title: 'Carnelian Moon Ring', action: '$420' %}
+      {% render 'nowandthen-collection-card', product: product_2, image: 'nt-collection-lapis.png', title: 'Lapis Signet', action: 'Made to Order' %}
+      {% render 'nowandthen-collection-card', product: product_3, image: 'nt-collection-quartz.png', title: 'Quartz Band', action: '$360' %}
+      {% render 'nowandthen-collection-card', product: product_4, image: 'nt-collection-garnet.png', title: 'Garnet Cuff', action: 'Made to Order' %}
+      {% render 'nowandthen-collection-card', product: product_5, image: 'nt-collection-pearl.png', title: 'Pearl Drop Earrings', action: '$280' %}
+      {% render 'nowandthen-collection-card', product: product_6, image: 'nt-collection-moonstone.png', title: 'Moonstone Pendant', action: 'Explore' %}
+      {% render 'nowandthen-collection-card', product: product_7, image: 'nt-collection-mother-pearl.png', title: 'Mother of Pearl Pendant', action: 'Enquiry' %}
+      {% render 'nowandthen-collection-card', product: product_8, image: 'nt-collection-silver-hoop.png', title: 'Silver Hoop Earrings', action: '$240' %}
+    </div>
+  </section>
+
+  <footer class="nt-footer"><div class="nt-footer__top"><form class="nt-newsletter" method="post" action="/contact#contact_form"><span>Now and then, in your inbox.</span><div class="nt-newsletter__input"><input type="email" name="contact[email]" placeholder="Email address" aria-label="Email address"><button type="submit" aria-label="Subscribe">→</button></div></form><div class="nt-footer__links"><div>ABOUT<ul><li>Philosophy</li><li>Contact</li></ul></div><div>ORDERS<ul><li>FAQ</li><li>Payment,<br>Shipping &amp;<br>Returns</li><li>Search</li></ul></div><div>LEGAL<ul><li>Terms</li><li>Privacy Policy</li><li>Accessibility</li><li>Do Not Sell or Share My Personal Information</li></ul></div><div>SOCIAL<ul><li>Instagram</li><li>Facebook</li><li>Pinterest</li></ul></div></div></div><div class="nt-footer__copyright">Copyright Nowandthen 2026</div></footer>
+</main>
+
+<script>
+  document.querySelector('[data-nt-announcement-close]')?.addEventListener('click', (event) => {
+    event.currentTarget.closest('[data-nt-announcement]')?.remove();
+  });
+  document.querySelector('[data-nt-mobile-menu]')?.addEventListener('click', (event) => {
+    const button = event.currentTarget;
+    const navigation = document.querySelector('[data-nt-mobile-navigation]');
+    const isOpen = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', String(!isOpen));
+    button.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+    navigation.hidden = isOpen;
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Nowandthen collection",
+  "settings": [],
+  "presets": [{ "name": "Nowandthen collection" }]
+}
+{% endschema %}

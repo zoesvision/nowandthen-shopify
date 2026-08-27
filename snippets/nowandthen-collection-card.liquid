@@ -1,0 +1,13 @@
+{%- assign card_url = routes.all_products_collection_url -%}
+{%- if product != blank -%}
+  {%- assign card_url = product.url -%}
+{%- endif -%}
+<article class="nt-collection-card">
+  <a class="nt-collection-card__media" href="{{ card_url }}" aria-label="{{ title | escape }}">
+    <img src="{{ image | asset_url }}" alt="{{ title | escape }}" width="640" height="800" loading="lazy">
+  </a>
+  <div class="nt-collection-card__meta">
+    <a href="{{ card_url }}">{{ title }}</a>
+    <a class="nt-collection-card__action" href="{{ card_url }}">{{ action }}</a>
+  </div>
+</article>

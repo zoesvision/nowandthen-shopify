@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "nowandthen_product": {
+      "type": "nowandthen-product",
+      "settings": {}
+    }
+  },
+  "order": ["nowandthen_product"]
+}
